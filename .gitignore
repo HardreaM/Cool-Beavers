@@ -2,6 +2,7 @@
 ########################################
 cache/
 saves/
+.vscode/
 
 
 # Compiled source #
