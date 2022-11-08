@@ -519,7 +519,7 @@ label wait:
 
     hide alex_normal
 
-    call flashback
+    call flashback from _call_flashback
 
     scene cafe_day
     with fade
