@@ -1,0 +1,6 @@
+game/
+audio/
+.vscode/
+*/
+*.txt
+*.json
