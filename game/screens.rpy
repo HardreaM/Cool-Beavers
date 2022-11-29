@@ -286,28 +286,43 @@ style quick_button_text:
 ## to other menus, and to start the game.
 
 screen navigation():
-
+   
     vbox:
         style_prefix "navigation"
-
-        xpos gui.navigation_xpos
+        
         yalign 0.5
 
         spacing gui.navigation_spacing
 
         if main_menu:
 
-            textbutton _("Start") action Start()
+            if not (renpy.get_screen('load') or renpy.get_screen('preferences')):
+                xalign 0.57
+
+                textbutton _("   Играть") action Start() text_style "menu_button_text"
+                textbutton _("Загрузить") action ShowMenu("load") text_style "menu_button_text"
+                textbutton _("Настройки") action ShowMenu("preferences") text_style "menu_button_text"
+                textbutton _("   Выйти") action Quit(confirm=not main_menu) text_style "menu_button_text"
+            
+            else:
+                xpos gui.navigation_xpos
+
+                #textbutton _("History") action ShowMenu("history")
+
+                textbutton _("Загрузить") action ShowMenu("load")
+
+                textbutton _("Настройки") action ShowMenu("preferences")
 
         else:
+            xpos gui.navigation_xpos
 
-            textbutton _("History") action ShowMenu("history")
+            #textbutton _("History") action ShowMenu("history")
 
-            textbutton _("Save") action ShowMenu("save")
+            textbutton _("Сохранить") action ShowMenu("save")
 
-        textbutton _("Load") action ShowMenu("load")
+            textbutton _("Загрузить") action ShowMenu("load")
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+            textbutton _("Настройки") action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -315,24 +330,35 @@ screen navigation():
 
         elif not main_menu:
 
-            textbutton _("Main Menu") action MainMenu()
+            textbutton _("Главный Экран") action MainMenu()
+            textbutton _("Выйти") action Quit(confirm=not main_menu)
 
-        textbutton _("About") action ShowMenu("about")
+        #textbutton _("About") action ShowMenu("about")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+            #textbutton _("Help") action ShowMenu("help")
+            pass
 
         if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
+            pass
+
 
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
+
+style menu_button_text:
+    outlines [ (absolute(4), "#fff", absolute(0), absolute(0)) ]
+    hover_outlines [ (absolute(4), "#000", absolute(0), absolute(0)) ]
+    size 54
+    bold True
+    color "#180f5c"
+    hover_color "#fff"
 
 style navigation_button:
     size_group "navigation"
@@ -358,6 +384,8 @@ screen main_menu():
     ## This empty frame darkens the main menu.
     frame:
         style "main_menu_frame"
+        xalign 0.5
+        yalign 0.5
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
@@ -368,11 +396,11 @@ screen main_menu():
         vbox:
             style "main_menu_vbox"
 
-            text "[config.name!t]":
-                style "main_menu_title"
+            #text "[config.name!t]":
+                #style "main_menu_title"
 
-            text "[config.version]":
-                style "main_menu_version"
+            #text "[config.version]":
+                #style "main_menu_version"
 
 
 style main_menu_frame is empty
@@ -385,7 +413,7 @@ style main_menu_frame:
     xsize 420
     yfill True
 
-    background "gui/overlay/main_menu.png"
+    #background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
@@ -469,7 +497,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
     use navigation
 
-    textbutton _("Return"):
+    textbutton _("Вернуться"):
         style "return_button"
 
         action Return()
@@ -583,19 +611,19 @@ screen save():
 
     tag menu
 
-    use file_slots(_("Save"))
+    use file_slots(_("Сохранение"))
 
 
 screen load():
 
     tag menu
 
-    use file_slots(_("Load"))
+    use file_slots(_("Загрузка"))
 
 
 screen file_slots(title):
 
-    default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Automatic saves"), quick=_("Quick saves"))
+    default page_name_value = FilePageNameInputValue(pattern=_("Страница {}"), auto=_("Автосохранения"), quick=_("Быстрые сохранения"))
 
     use game_menu(title):
 
@@ -712,7 +740,7 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Preferences"), scroll="viewport"):
+    use game_menu(_("Настройки"), scroll="viewport"):
 
         vbox:
 
@@ -723,16 +751,16 @@ screen preferences():
 
                     vbox:
                         style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                        label _("Экран")
+                        textbutton _("В окне") action Preference("display", "window")
+                        textbutton _("Полноэкранный") action Preference("display", "fullscreen")
 
                 vbox:
                     style_prefix "check"
-                    label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+                    label _("Пропуск текста")
+                    textbutton _("Не показанное") action Preference("skip", "toggle")
+                    textbutton _("После выборов") action Preference("after choices", "toggle")
+                    textbutton _("Переходы") action InvertSelected(Preference("transitions", "toggle"))
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
@@ -745,25 +773,25 @@ screen preferences():
 
                 vbox:
 
-                    label _("Text Speed")
+                    label _("Скорость текста")
 
                     bar value Preference("text speed")
 
-                    label _("Auto-Forward Time")
+                    label _("Время перемотки")
 
                     bar value Preference("auto-forward time")
 
                 vbox:
 
                     if config.has_music:
-                        label _("Music Volume")
+                        label _("Громкость музыки")
 
                         hbox:
                             bar value Preference("music volume")
 
                     if config.has_sound:
 
-                        label _("Sound Volume")
+                        label _("Громкость звуков")
 
                         hbox:
                             bar value Preference("sound volume")
@@ -773,7 +801,7 @@ screen preferences():
 
 
                     if config.has_voice:
-                        label _("Voice Volume")
+                        label _("Громкость речи")
 
                         hbox:
                             bar value Preference("voice volume")
@@ -784,7 +812,7 @@ screen preferences():
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
 
-                        textbutton _("Mute All"):
+                        textbutton _("Выключить всё"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
 
