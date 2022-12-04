@@ -324,11 +324,11 @@ translate russian strings:
 
     # game/screens.rpy:1181
     old "Yes"
-    new "Yes"
+    new "Да"
 
     # game/screens.rpy:1182
     old "No"
-    new "No"
+    new "Нет"
 
     # game/screens.rpy:1228
     old "Skipping"
