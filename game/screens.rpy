@@ -3,7 +3,7 @@
 ################################################################################
 
 init offset = -1
-
+define config.language = "russian"
 
 ################################################################################
 ## Styles
@@ -249,14 +249,14 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
+            textbutton _("Назад") action Rollback()
+            textbutton _("История") action ShowMenu('history')
+            textbutton _("Пропуск") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("Перемотка") action Preference("auto-forward", "toggle")
+            textbutton _("Сохранение") action ShowMenu('save')
+            textbutton _("Б.Сохранение") action QuickSave()
+            #textbutton _("Б.Загр.") action QuickLoad()
+            textbutton _("Настройки") action ShowMenu('preferences')
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever

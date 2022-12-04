@@ -5,10 +5,10 @@
 
 define gui.nvl_height = None
 
-define alex = Character("Alex")
-define player = Character("Me")
-define alice = Character("Alice")
-define paul = Character("Paul")
+define alex = Character("Алексей")
+define player = Character("Я")
+define alice = Character("Алина")
+define paul = Character("Павел")
 
 define fullScreen = Character(None, kind=nvl)
 
