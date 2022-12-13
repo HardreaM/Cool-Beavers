@@ -96,7 +96,7 @@ translate russian strings:
 
     # game/screens.rpy:667
     old "empty slot"
-    new "empty slot"
+    new "пустой слот"
 
     # game/screens.rpy:684
     old "<"
