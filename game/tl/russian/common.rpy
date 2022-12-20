@@ -436,19 +436,19 @@ translate russian strings:
 
     # renpy/common/00gui.rpy:445
     old "Are you sure?"
-    new "Are you sure?"
+    new "Вы уверены?"
 
     # renpy/common/00gui.rpy:446
     old "Are you sure you want to delete this save?"
-    new "Are you sure you want to delete this save?"
+    new "Вы уверены, что хотите удалить это сохранение?"
 
     # renpy/common/00gui.rpy:447
     old "Are you sure you want to overwrite your save?"
-    new "Are you sure you want to overwrite your save?"
+    new "Вы уверены, что хотите перезаписать это сохранение?"
 
     # renpy/common/00gui.rpy:448
     old "Loading will lose unsaved progress.\nAre you sure you want to do this?"
-    new "Loading will lose unsaved progress.\nAre you sure you want to do this?"
+    new "Загрузка уничтожит весб несохраненный прогресс.\nВы уверены, что хотите это сделать?"
 
     # renpy/common/00gui.rpy:449
     old "Are you sure you want to quit?"
@@ -456,7 +456,7 @@ translate russian strings:
 
     # renpy/common/00gui.rpy:450
     old "Are you sure you want to return to the main menu?\nThis will lose unsaved progress."
-    new "Are you sure you want to return to the main menu?\nThis will lose unsaved progress."
+    new "Вы уверены, что хотите выйти в главное меню?\nЭто уничтожит несохраненный прогресс."
 
     # renpy/common/00gui.rpy:451
     old "Are you sure you want to end the replay?"
@@ -464,15 +464,15 @@ translate russian strings:
 
     # renpy/common/00gui.rpy:452
     old "Are you sure you want to begin skipping?"
-    new "Are you sure you want to begin skipping?"
+    new "Вы уверены, что ъотите начать пропускать?"
 
     # renpy/common/00gui.rpy:453
     old "Are you sure you want to skip to the next choice?"
-    new "Are you sure you want to skip to the next choice?"
+    new "Вы уверены, что хотите перейти к следующему выбору?"
 
     # renpy/common/00gui.rpy:454
     old "Are you sure you want to skip unseen dialogue to the next choice?"
-    new "Are you sure you want to skip unseen dialogue to the next choice?"
+    new "Вы уверены, что хотитие пропустить непросмотренные диалоги до следующего выбора?"
 
     # renpy/common/00keymap.rpy:310
     old "Failed to save screenshot as %s."
